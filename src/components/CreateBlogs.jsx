@@ -4,27 +4,21 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function CreateBlogs() {
+  const [desc, setDesc] = useState("");
+  const history = useHistory();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [desc, setDesc] = useState("");
-  const history = useHistory();
+  const [descErr, setDescErr] = useState("");
+  const [titleErr, setTitleErr] = useState("");
+  const [authorErr, setAuthorErr] = useState("");
 
-  //check desc count.
-  const validateDescCount = (value) => {
-    const wordCount = value.trim().split(/\s+/).length;
-    if (wordCount < 10) {
-      return "Description must be at least 10 words";
-    }
-    return true;
-  };
-
+  //fetching from an external api.
   async function onSubmit(data) {
     const newData = { ...data, description: desc };
-    //fetching from an external api.
-    await fetch("http://localhost:8000/api/blogs", {
+    const res = await fetch("http://localhost:8000/api/blogs", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -32,8 +26,20 @@ export default function CreateBlogs() {
       body: JSON.stringify(newData),
     });
 
-    toast("Blog Added Successfully!");
-    history.push("/");
+    const dataApi = await res.json();
+
+    //check for form errors.
+    if (dataApi.status === false) {
+      setAuthorErr(dataApi.error.author[0]);
+      setDescErr(dataApi.error.description[0]);
+      setTitleErr(dataApi.error.title[0]);
+    } else {
+      toast("Blog Added Successfully!");
+      history.push("/");
+    }
+    // console.log(dataApi.error.description[0]);
+    // console.log(dataApi.error.title[0]);
+    // console.log(dataApi.error.author[0]);
   }
 
   return (
@@ -61,10 +67,14 @@ export default function CreateBlogs() {
                   "border border-slate-500 shadow-md p-2 rounded-md focus:outline-blue-900"
                 }
               />
-              {errors.title && (
-                <p className="font-semibold text-red-500">
-                  This field is required!
-                </p>
+              {titleErr ? (
+                <div className="font-semibold text-red-500">{titleErr}</div>
+              ) : (
+                errors.title && (
+                  <p className="font-semibold text-red-500">
+                    This field is required!
+                  </p>
+                )
               )}
             </div>
 
@@ -95,20 +105,21 @@ export default function CreateBlogs() {
                 Description: *
               </label>
               <textarea
-                {...register("description", {
-                  required: "Description is required",
-                  validate: validateDescCount,
-                })}
+                {...register("description", { required: true, min: 10 })}
                 cols="30"
                 rows="7"
                 onChange={(e) => setDesc(e.target.value)}
                 value={desc}
                 className="border border-slate-500 shadow-md p-2 rounded-md focus:outline-blue-900"
               ></textarea>
-              {errors.description && (
-                <p className="font-semibold text-red-500">
-                  {errors.description.message}
-                </p>
+              {descErr ? (
+                <div className="font-semibold text-red-500">{descErr}</div>
+              ) : (
+                errors.description && (
+                  <p className="font-semibold text-red-500">
+                    This field is required!
+                  </p>
+                )
               )}
             </div>
 
@@ -132,10 +143,14 @@ export default function CreateBlogs() {
                 placeholder="Enter author's name"
                 className="border border-slate-500 shadow-md p-2 rounded-md focus:outline-blue-900"
               />
-              {errors.author && (
-                <p className="font-semibold text-red-500">
-                  This field is required!
-                </p>
+              {authorErr ? (
+                <div className="font-semibold text-red-500">{authorErr}</div>
+              ) : (
+                errors.author && (
+                  <p className="font-semibold text-red-500">
+                    This field is required!
+                  </p>
+                )
               )}
             </div>
 
