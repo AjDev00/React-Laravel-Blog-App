@@ -30,7 +30,7 @@ export default function NavBar() {
         {nav && (
           <div
             style={{ fontSize: "20px" }}
-            className="flex flex-col gap-10 text-white border border-transparent bg-blue-950 absolute top-0 right-0 w-60 h-screen bg-opacity-95 z-0 backdrop-blur-lg frosted-glass"
+            className="flex flex-col gap-10 text-white border border-transparent bg-blue-950 absolute top-0 right-0 w-60 min-h-screen bg-opacity-95 z-0 backdrop-blur-lg frosted-glass"
           >
             <div className="ml-10 mt-20 cursor-pointer flex flex-row gap-3 items-center">
               {/* <FaHome size={25} /> */}
