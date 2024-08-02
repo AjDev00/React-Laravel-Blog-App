@@ -25,7 +25,7 @@ function App() {
   const [nav, setNav] = useState(false);
 
   function handleShowInput() {
-    setShowInput(true);
+    setShowInput(!showInput);
   }
 
   return (

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { BiArrowBack } from "react-icons/bi";
 
 export default function CreateBlogs() {
   const [desc, setDesc] = useState("");
@@ -14,6 +15,10 @@ export default function CreateBlogs() {
   const [descErr, setDescErr] = useState("");
   const [titleErr, setTitleErr] = useState("");
   const [authorErr, setAuthorErr] = useState("");
+
+  function goBack() {
+    history.push("/");
+  }
 
   //fetching from an external api.
   async function onSubmit(data) {
@@ -45,9 +50,22 @@ export default function CreateBlogs() {
   return (
     <div>
       <div className="pt-4">
+        {/* //back button. */}
+        <div className="px-3 mb-5">
+          <button
+            style={{ fontSize: "16px" }}
+            onClick={goBack}
+            className="border border-transparent shadow-md p-2 px-4 rounded-md bg-slate-500 text-black font-semibold cursor-pointer hover:invert duration-300"
+          >
+            <BiArrowBack />
+          </button>
+        </div>
+
+        {/* //header. */}
         <div className="px-3 mb-5 text-2xl text-blue-900 font-semibold">
           Create Blogs
         </div>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-5">
             {/* //title. */}

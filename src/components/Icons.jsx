@@ -14,7 +14,7 @@ export default function Icons() {
       </div>
       <div onClick={() => setNav(!nav)} className="cursor-pointer">
         {nav ? (
-          <FaTimes size={25} className="z-10 relative text-white" />
+          <FaTimes size={25} className="z-10 relative text-white mr-2" />
         ) : (
           <FaBars size={25} />
         )}

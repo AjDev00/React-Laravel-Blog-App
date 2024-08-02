@@ -10,7 +10,7 @@ export default function Blog() {
           className="flex flex-col px-3 pt-7 gap-3 font-semibold"
         >
           <img src={img2} alt="" className="rounded-md h-52 w-96" />
-          <div>
+          <div className="-z-10 opacity-90">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae
             est ad ipsa veritatis temporibus.
           </div>
