@@ -6,23 +6,26 @@ import { BiArrowBack } from "react-icons/bi";
 
 export default function CreateBlogs() {
   const [desc, setDesc] = useState("");
+  const [descErr, setDescErr] = useState("");
+  const [titleErr, setTitleErr] = useState("");
+  const [authorErr, setAuthorErr] = useState("");
+  const [imageId, setImageId] = useState("");
+  const [imgErr, setImgErr] = useState("");
   const history = useHistory();
+
+  //   function goBack() {
+  //     history.push("/");
+  //   }
+  //react hook form params.
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [descErr, setDescErr] = useState("");
-  const [titleErr, setTitleErr] = useState("");
-  const [authorErr, setAuthorErr] = useState("");
 
-  function goBack() {
-    history.push("/");
-  }
-
-  //fetching from an external api.
+  //inserting user's title, shortDesc, desc and author into the database with an external api.
   async function onSubmit(data) {
-    const newData = { ...data, description: desc };
+    const newData = { ...data, description: desc, image_id: imageId };
     const res = await fetch("http://localhost:8000/api/blogs", {
       method: "POST",
       headers: {
@@ -47,6 +50,28 @@ export default function CreateBlogs() {
     // console.log(dataApi.error.author[0]);
   }
 
+  //uploading user's image into the database with an external api.
+  async function handleFileChange(e) {
+    const file = e.target.files[0]; //selects the first file selected by the user.
+    const formData = new FormData(); //creating an instance of an in-built JS function that allows constructing key/value pairs representing form fields and their values.
+    formData.append("image", file); //appended the key with the value(image as the key and the user's file as the value).
+
+    const res = await fetch("http://localhost:8000/api/save-temp-image", {
+      method: "POST",
+      body: formData,
+    });
+    const result = await res.json();
+
+    //check for errors.
+    if (result.status === false) {
+      setImgErr(result.error.image);
+      e.target.value = null;
+      //   console.log(result.error.image);
+    }
+
+    setImageId(result.image.id);
+  }
+
   return (
     <div>
       <div className="pt-4">
@@ -54,7 +79,7 @@ export default function CreateBlogs() {
         <div className="px-3 mb-5">
           <button
             style={{ fontSize: "16px" }}
-            onClick={goBack}
+            onClick={() => history.go(-1)}
             className="border border-transparent shadow-md p-2 px-4 rounded-md bg-slate-500 text-black font-semibold cursor-pointer hover:invert duration-300"
           >
             <BiArrowBack />
@@ -143,7 +168,12 @@ export default function CreateBlogs() {
 
             {/* //file. */}
             <div className="flex flex-col px-3">
-              <input type="file" name="" id="" />
+              <input onChange={handleFileChange} type="file" name="" id="" />
+              {imgErr ? (
+                <div className="font-semibold text-red-500">{imgErr}</div>
+              ) : (
+                ""
+              )}
             </div>
 
             {/* //author. */}
