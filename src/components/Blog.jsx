@@ -4,10 +4,12 @@ import { BiArrowFromLeft } from "react-icons/bi";
 import loadingImg from "../assets/loading.svg";
 import { useEffect, useState } from "react";
 import placeholder from "../assets/placeholder.jpg";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-export default function Blog({ firstBlog, loading, showImage, setLoading }) {
+export default function Blog({ firstBlog, loading, showImage }) {
   const [blogs, setBlogs] = useState();
 
+  //displaying all blogs via external api.
   async function readAllBlogs() {
     const res = await fetch("http://localhost:8000/api/blogs");
     const data = await res.json();
@@ -19,9 +21,10 @@ export default function Blog({ firstBlog, loading, showImage, setLoading }) {
     readAllBlogs();
   }, []);
 
+  //displaying all images via external api.
   function showImage(img) {
     return img ? (
-      "http://localhost:8000/uploads/blogs/" + img
+      "http://localhost:8000/uploads/blogs/" + img //getting the image blogs from the upload folder from the backend.
     ) : (
       <img src={placeholder} alt="" />
     );
@@ -55,13 +58,15 @@ export default function Blog({ firstBlog, loading, showImage, setLoading }) {
           )}
         </div>
         {!loading && (
-          <span className="flex flex-row items-center gap-1.5 mt-4 px-3">
-            <i className="hover:underline">Read More</i>
-            <BiArrowFromLeft className="mt-0.5" />
-          </span>
+          <Link to={`/blog-details/${firstBlog.id}`}>
+            <span className="flex flex-row items-center gap-1.5 mt-4 px-3">
+              <i className="hover:underline">Read More</i>
+              <BiArrowFromLeft className="mt-0.5" />
+            </span>
+          </Link>
         )}
         <div>
-          <div>
+          <div className="-z-10">
             {!loading && (
               <div
                 style={{ fontSize: "22px" }}
@@ -73,12 +78,7 @@ export default function Blog({ firstBlog, loading, showImage, setLoading }) {
             {blogs &&
               blogs.map((blog) => {
                 return (
-                  <RecentPosts
-                    blog={blog}
-                    key={blog.id}
-                    loading={loading}
-                    // showAllImage={showAllImage}
-                  />
+                  <RecentPosts blog={blog} key={blog.id} loading={loading} />
                 );
               })}
           </div>

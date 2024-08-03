@@ -12,10 +12,6 @@ export default function CreateBlogs() {
   const [imageId, setImageId] = useState("");
   const [imgErr, setImgErr] = useState("");
   const history = useHistory();
-
-  //   function goBack() {
-  //     history.push("/");
-  //   }
   //react hook form params.
   const {
     register,

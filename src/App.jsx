@@ -13,6 +13,7 @@ import {
   Route,
 } from "react-router-dom/cjs/react-router-dom.min";
 import CreateBlogs from "./components/CreateBlogs";
+import BlogDetails from "./components/BlogDetails";
 
 export const AppContext = createContext();
 
@@ -44,6 +45,9 @@ function App() {
             </Route>
             <Route path="/create-blogs">
               <CreateBlogs />
+            </Route>
+            <Route path="/blog-details/:id">
+              <BlogDetails />
             </Route>
           </Switch>
         </Router>

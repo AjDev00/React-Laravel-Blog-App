@@ -1,6 +1,7 @@
 import img1 from "../assets/pic-1.webp";
 import { BiArrowFromLeft } from "react-icons/bi";
 import placeholder from "../assets/placeholder.jpg";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function RecentPosts({ blog, loading }) {
   function showAllImage(img) {
@@ -28,10 +29,12 @@ export default function RecentPosts({ blog, loading }) {
                 className="text-black opacity-90 font-semibold flex flex-col"
               >
                 {blog.shortDesc}
-                <span className="flex flex-row items-center gap-1.5 mt-4">
-                  <i className="hover:underline">Read More</i>
-                  <BiArrowFromLeft className="mt-0.5" />
-                </span>
+                <Link to={`/blog-details/${blog.id}`}>
+                  <span className="flex flex-row items-center gap-1.5 mt-4">
+                    <i className="hover:underline">Read More</i>
+                    <BiArrowFromLeft className="mt-0.5" />
+                  </span>
+                </Link>
               </p>
             </div>
             <hr className="mb-10" />
