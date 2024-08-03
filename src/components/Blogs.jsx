@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Blog from "./Blog";
+import placeholder from "../assets/placeholder.jpg";
 
 export default function Blogs() {
   const [firstBlog, setFirstBlog] = useState({});
@@ -11,7 +12,6 @@ export default function Blogs() {
 
     setFirstBlog(data.data);
     setLoading(false);
-    console.log(data);
   }
 
   useEffect(() => {
@@ -20,7 +20,15 @@ export default function Blogs() {
 
   return (
     <div>
-      <div>{firstBlog && <Blog firstBlog={firstBlog} loading={loading} />}</div>
+      <div>
+        {firstBlog && (
+          <Blog
+            firstBlog={firstBlog}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        )}
+      </div>
     </div>
   );
 }

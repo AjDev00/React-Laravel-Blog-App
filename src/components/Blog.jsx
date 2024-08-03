@@ -3,21 +3,29 @@ import RecentPosts from "./RecentPosts";
 import { BiArrowFromLeft } from "react-icons/bi";
 import loadingImg from "../assets/loading.svg";
 import { useEffect, useState } from "react";
+import placeholder from "../assets/placeholder.jpg";
 
-export default function Blog({ firstBlog, loading }) {
-  const [blogs, setBlogs] = useState({});
+export default function Blog({ firstBlog, loading, showImage, setLoading }) {
+  const [blogs, setBlogs] = useState();
 
   async function readAllBlogs() {
     const res = await fetch("http://localhost:8000/api/blogs");
     const data = await res.json();
 
     setBlogs(data.data);
-    console.log(blogs);
   }
 
   useEffect(() => {
     readAllBlogs();
   }, []);
+
+  function showImage(img) {
+    return img ? (
+      "http://localhost:8000/uploads/blogs/" + img
+    ) : (
+      <img src={placeholder} alt="" />
+    );
+  }
 
   return (
     <div>
@@ -28,11 +36,19 @@ export default function Blog({ firstBlog, loading }) {
         >
           {loading ? (
             <div className="justify-center items-center flex">
-              <img src={loadingImg} alt="" className="w-14 h-14 animate-spin" />
+              <img
+                src={loadingImg}
+                alt=""
+                className="w-14 h-14 animate-spin mt-44"
+              />
             </div>
           ) : (
             <div className="flex flex-col gap-3">
-              <img src={img2} alt="" className="rounded-md h-52 w-96" />
+              <img
+                src={showImage(firstBlog.image)}
+                alt=""
+                className="rounded-md h-52 w-96"
+              />
               <div className="font-bold text-[18px]">{firstBlog.title}</div>
               <div className="-z-10 opacity-90">{firstBlog.shortDesc}</div>
             </div>
@@ -46,19 +62,25 @@ export default function Blog({ firstBlog, loading }) {
         )}
         <div>
           <div>
-            <div
-              style={{ fontSize: "22px" }}
-              className="font-bold opacity-50 text-blue-900 mb-4 -z-50 px-3 pt-14"
-            >
-              Recent Posts
-            </div>
+            {!loading && (
+              <div
+                style={{ fontSize: "22px" }}
+                className="font-bold opacity-50 text-blue-900 mb-4 -z-50 px-3 pt-14"
+              >
+                Recent Posts
+              </div>
+            )}
             {blogs &&
               blogs.map((blog) => {
-                return <RecentPosts blog={blog} key={blog.id} />;
+                return (
+                  <RecentPosts
+                    blog={blog}
+                    key={blog.id}
+                    loading={loading}
+                    // showAllImage={showAllImage}
+                  />
+                );
               })}
-            {/* {blogs &blogs.map((blog) => (
-              <div>{blog && <RecentPosts blog={blog} key={blog.id} />}</div>
-            ))} */}
           </div>
         </div>
       </div>
