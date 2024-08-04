@@ -84,7 +84,7 @@ export default function CreateBlogs() {
 
         {/* //header. */}
         <div className="px-3 mb-5 text-2xl text-blue-900 font-semibold">
-          Create Blogs
+          Create Blog
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>

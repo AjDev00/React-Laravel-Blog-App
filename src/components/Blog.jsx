@@ -1,4 +1,4 @@
-import img2 from "../assets/pic-2.webp";
+import { BiEdit } from "react-icons/bi";
 import RecentPosts from "./RecentPosts";
 import { BiArrowFromLeft } from "react-icons/bi";
 import loadingImg from "../assets/loading.svg";
@@ -58,12 +58,19 @@ export default function Blog({ firstBlog, loading, showImage }) {
           )}
         </div>
         {!loading && (
-          <Link to={`/blog-details/${firstBlog.id}`}>
-            <span className="flex flex-row items-center gap-1.5 mt-4 px-3">
-              <i className="hover:underline">Read More</i>
-              <BiArrowFromLeft className="mt-0.5" />
-            </span>
-          </Link>
+          <span className="flex flex-row justify-between mt-2 px-3">
+            <Link to={`/blog-details/${firstBlog.id}`}>
+              <span className="flex flex-row items-center gap-1.5 mt-4">
+                <i className="hover:underline text-[15px]">Read More</i>
+                <BiArrowFromLeft className="mt-0.5" />
+              </span>
+            </Link>
+            <Link to={`/edit-blog/${firstBlog.id}`} className="mt-4 mr-4">
+              <span className="">
+                <BiEdit size={25} className="cursor-pointer" />
+              </span>
+            </Link>
+          </span>
         )}
         <div>
           <div className="-z-10">
