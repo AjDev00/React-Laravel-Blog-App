@@ -85,7 +85,13 @@ export default function Blog({ firstBlog, loading, showImage }) {
             {blogs &&
               blogs.map((blog) => {
                 return (
-                  <RecentPosts blog={blog} key={blog.id} loading={loading} />
+                  <RecentPosts
+                    blogs={blogs}
+                    setBlogs={setBlogs}
+                    blog={blog}
+                    key={blog.id}
+                    loading={loading}
+                  />
                 );
               })}
           </div>
