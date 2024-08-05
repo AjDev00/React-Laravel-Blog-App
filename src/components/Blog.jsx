@@ -32,7 +32,7 @@ export default function Blog({ firstBlog, loading, showImage }) {
 
   return (
     <div>
-      <div>
+      <div className="dark:text-white">
         {!input && (
           <div>
             <div
@@ -55,7 +55,9 @@ export default function Blog({ firstBlog, loading, showImage }) {
                     className="rounded-md h-52 w-96"
                   />
                   <div className="font-bold text-[18px]">{firstBlog.title}</div>
-                  <div className="-z-10 opacity-90">{firstBlog.shortDesc}</div>
+                  <div className="dark:opacity-100 opacity-90">
+                    {firstBlog.shortDesc}
+                  </div>
                 </div>
               )}
             </div>
@@ -76,7 +78,7 @@ export default function Blog({ firstBlog, loading, showImage }) {
             {!loading && !input ? (
               <div
                 style={{ fontSize: "22px" }}
-                className="font-bold opacity-50 text-blue-900 mb-4 -z-50 px-3 pt-14"
+                className="font-bold opacity-50 text-blue-900 mb-4 -z-50 px-3 pt-14 dark:text-white dark:opacity-100"
               >
                 Recent Posts
               </div>

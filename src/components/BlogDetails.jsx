@@ -22,7 +22,7 @@ export default function BlogDetails() {
   }, []);
 
   return (
-    <div>
+    <div className="dark:bg-slate-900">
       {loading ? (
         <div className="justify-center items-center flex">
           <img
@@ -34,12 +34,12 @@ export default function BlogDetails() {
       ) : (
         <div className="flex flex-col mb-5">
           <div className="flex flex-row justify-between px-3 pt-3 items-center">
-            <div className="font-bold text-[22px] text-blue-800">
+            <div className="font-bold text-[22px] text-blue-800 dark:text-white">
               {singleBlog.title}
             </div>
             <div
               onClick={() => history.push("/")}
-              className="flex flex-row items-center justify-center gap-4 border border-transparent shadow-sm p-2 px-4 rounded-md bg-slate-500 text-black font-semibold cursor-pointer hover:invert duration-300"
+              className="dark:text-white flex flex-row items-center justify-center gap-4 border border-transparent shadow-sm p-2 px-4 rounded-md bg-slate-500 text-black font-semibold cursor-pointer hover:invert duration-300"
             >
               {/* back to home */}
               {/* <BiArrowBack /> */}
@@ -47,8 +47,11 @@ export default function BlogDetails() {
             </div>
           </div>
           <div className="px-3 pt-4">
-            <div className="text-blue-950">
-              by <strong className="text-blue-800">{singleBlog.author}</strong>{" "}
+            <div className="text-blue-950 dark:text-white">
+              by{" "}
+              <strong className="text-blue-800 dark:text-white dark:underline">
+                {singleBlog.author}
+              </strong>{" "}
               on {singleBlog.date}.
             </div>
           </div>

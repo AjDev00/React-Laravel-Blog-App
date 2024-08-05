@@ -29,7 +29,7 @@ export default function InputSearch() {
             type="text"
             onChange={(e) => setInput(e.target.value)}
             placeholder="Search with keywords..."
-            className="border border-blue-500 shadow-sm p-2 rounded-md w-96 px-3 focus:outline-blue-900 focus:border-2 placeholder:font-semibold"
+            className="dark:text-black border border-blue-500 shadow-sm p-2 rounded-md w-96 px-3 focus:outline-blue-900 focus:border-2 placeholder:font-semibold dark:focus:outline-none"
             value={input}
             required
           />

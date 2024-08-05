@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import "../index.css";
 import { useContext, useState } from "react";
 import { AppContext } from "../App";
-import { FaHome } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 
 export default function NavBar() {

@@ -45,7 +45,7 @@ export default function RecentPosts({ blogs, setBlogs, blog, loading }) {
   return (
     <div>
       {!loading && (
-        <div className="-z-50 px-3">
+        <div className="px-3">
           <div className="flex flex-col gap-7 -z-10">
             <div className="px-3 flex flex-col gap-3">
               <img
@@ -56,7 +56,7 @@ export default function RecentPosts({ blogs, setBlogs, blog, loading }) {
               <div className="font-bold text-[18px]">{blog.title}</div>
               <p
                 style={{ fontSize: "" }}
-                className="text-black opacity-90 font-semibold flex flex-col"
+                className="text-black opacity-90 dark:text-white font-semibold flex flex-col"
               >
                 {blog.shortDesc}
                 <span className="flex flex-row justify-between mt-2">
@@ -80,7 +80,7 @@ export default function RecentPosts({ blogs, setBlogs, blog, loading }) {
                 </span>
               </p>
             </div>
-            <hr className="mb-10" />
+            <hr className="mb-10 dark:opacity-20" />
           </div>
         </div>
       )}

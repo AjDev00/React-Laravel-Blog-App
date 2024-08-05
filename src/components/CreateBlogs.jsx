@@ -103,7 +103,7 @@ export default function CreateBlogs() {
                 {...register("title", { required: true, min: 5 })}
                 placeholder="Enter title..."
                 className={
-                  "border border-slate-500 shadow-md p-2 rounded-md focus:outline-blue-900"
+                  "border border-slate-500 dark:text-black dark:focus:outline-none shadow-md p-2 rounded-md focus:outline-blue-900"
                 }
               />
               {titleErr ? (
@@ -130,7 +130,7 @@ export default function CreateBlogs() {
                 {...register("shortDesc")}
                 type="text"
                 placeholder="Enter short desc..."
-                className="border border-slate-500 shadow-md p-2 rounded-md focus:outline-blue-900"
+                className="border border-slate-500 dark:text-black dark:focus:outline-none shadow-md p-2 rounded-md focus:outline-blue-900"
               />
             </div>
 
@@ -149,7 +149,7 @@ export default function CreateBlogs() {
                 rows="7"
                 onChange={(e) => setDesc(e.target.value)}
                 value={desc}
-                className="border border-slate-500 shadow-md p-2 rounded-md focus:outline-blue-900"
+                className="border border-slate-500 dark:text-black dark:focus:outline-none shadow-md p-2 rounded-md focus:outline-blue-900"
               ></textarea>
               {descErr ? (
                 <div className="font-semibold text-red-500">{descErr}</div>
@@ -185,7 +185,7 @@ export default function CreateBlogs() {
                 {...register("author", { required: true, min: 3 })}
                 type="text"
                 placeholder="Enter author's name"
-                className="border border-slate-500 shadow-md p-2 rounded-md focus:outline-blue-900"
+                className="border border-slate-500 dark:text-black dark:focus:outline-none shadow-md p-2 rounded-md focus:outline-blue-900"
               />
               {authorErr ? (
                 <div className="font-semibold text-red-500">{authorErr}</div>

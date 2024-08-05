@@ -2,7 +2,7 @@ import "./App.css";
 import AddNewBlogBtn from "./components/AddNewBlogBtn";
 import Header from "./components/Header";
 import InputSearch from "./components/InputSearch";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import Blogs from "./components/Blogs";
 import { ToastContainer, toast } from "react-toastify";
@@ -34,8 +34,24 @@ function App() {
   //show all blogs params.
   const [blogs, setBlogs] = useState();
 
+  //toggle light and dark mode.
+  const [toggleSwitch, setToggleSwitch] = useState(false);
+
+  function handleToggleSwitch() {
+    setToggleSwitch(!toggleSwitch);
+  }
+
+  useEffect(() => {
+    console.log(`Dark mode is now ${toggleSwitch ? "enabled" : "disabled"}`);
+    if (toggleSwitch) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [toggleSwitch]);
+
   return (
-    <div>
+    <div className="dark:bg-slate-900 dark:text-white dark:duration-500 duration-500 min-h-screen">
       <AppContext.Provider
         value={{
           handleShowInput,
@@ -45,6 +61,8 @@ function App() {
           setNav,
           blogs,
           setBlogs,
+          toggleSwitch,
+          handleToggleSwitch,
         }}
       >
         <Router>
