@@ -58,18 +58,18 @@ export default function Blog({ firstBlog, loading, showImage }) {
           )}
         </div>
         {!loading && (
-          <span className="flex flex-row justify-between mt-2 px-3">
+          <span className="flex flex-row justify-between mt-2 px-4">
             <Link to={`/blog-details/${firstBlog.id}`}>
-              <span className="flex flex-row items-center gap-1.5 mt-4">
+              <span className="flex flex-row items-center gap-2 mt-4">
                 <i className="hover:underline text-[15px]">Read More</i>
-                <BiArrowFromLeft className="mt-0.5" />
+                <BiArrowFromLeft size={17} className="mt-0.5" />
               </span>
             </Link>
-            <Link to={`/edit-blog/${firstBlog.id}`} className="mt-4 mr-4">
+            {/* <Link to={`/edit-blog/${firstBlog.id}`} className="mt-4 mr-4">
               <span className="">
                 <BiEdit size={25} className="cursor-pointer" />
               </span>
-            </Link>
+            </Link> */}
           </span>
         )}
         <div>

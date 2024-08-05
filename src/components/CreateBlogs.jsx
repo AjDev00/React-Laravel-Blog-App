@@ -41,9 +41,6 @@ export default function CreateBlogs() {
       toast("Blog Added Successfully!");
       history.push("/");
     }
-    // console.log(dataApi.error.description[0]);
-    // console.log(dataApi.error.title[0]);
-    // console.log(dataApi.error.author[0]);
   }
 
   //uploading user's image into the database with an external api.
@@ -71,20 +68,23 @@ export default function CreateBlogs() {
   return (
     <div>
       <div className="pt-4">
-        {/* //back button. */}
-        <div className="px-3 mb-5">
-          <button
-            style={{ fontSize: "16px" }}
-            onClick={() => history.go(-1)}
-            className="border border-transparent shadow-md p-2 px-4 rounded-md bg-slate-500 text-black font-semibold cursor-pointer hover:invert duration-300"
-          >
-            <BiArrowBack />
-          </button>
-        </div>
+        <div className="flex flex-row-reverse justify-between items-center">
+          {/* //back button. */}
+          <div className="px-3 mb-5">
+            <button
+              style={{ fontSize: "16px" }}
+              onClick={() => history.go(-1)}
+              className="border border-transparent shadow-md p-2 px-4 rounded-md bg-slate-500 text-black font-semibold cursor-pointer hover:invert duration-300"
+            >
+              {/* <BiArrowBack /> */}
+              back
+            </button>
+          </div>
 
-        {/* //header. */}
-        <div className="px-3 mb-5 text-2xl text-blue-900 font-semibold">
-          Create Blog
+          {/* //header. */}
+          <div className="px-3 mb-5 text-2xl text-blue-900 font-semibold">
+            Create Blog
+          </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -15,7 +15,6 @@ import {
 import CreateBlogs from "./components/CreateBlogs";
 import BlogDetails from "./components/BlogDetails";
 import EditBlog from "./components/EditBlog";
-import DeleteBlogs from "./components/DeleteBlogs";
 
 export const AppContext = createContext();
 
@@ -54,9 +53,6 @@ function App() {
             <Route path="/edit-blog/:id">
               <EditBlog />
             </Route>
-            {/* <Route path="/delete-blog/:id">
-              <DeleteBlogs />
-            </Route> */}
           </Switch>
         </Router>
       </AppContext.Provider>
