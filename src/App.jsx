@@ -23,17 +23,29 @@ function App() {
   const [showInput, setShowInput] = useState(false);
   const [input, setInput] = useState("");
 
+  function handleShowInput() {
+    setShowInput(!showInput);
+    // setInput("");
+  }
+
   //Navbar params.
   const [nav, setNav] = useState(false);
 
-  function handleShowInput() {
-    setShowInput(!showInput);
-  }
+  //show all blogs params.
+  const [blogs, setBlogs] = useState();
 
   return (
     <div>
       <AppContext.Provider
-        value={{ handleShowInput, input, setInput, nav, setNav }}
+        value={{
+          handleShowInput,
+          input,
+          setInput,
+          nav,
+          setNav,
+          blogs,
+          setBlogs,
+        }}
       >
         <Router>
           <Switch>

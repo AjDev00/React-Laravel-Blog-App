@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { BiArrowBack } from "react-icons/bi";
 
 export default function CreateBlogs() {
   const [desc, setDesc] = useState("");
@@ -12,6 +11,7 @@ export default function CreateBlogs() {
   const [imageId, setImageId] = useState("");
   const [imgErr, setImgErr] = useState("");
   const history = useHistory();
+
   //react hook form params.
   const {
     register,

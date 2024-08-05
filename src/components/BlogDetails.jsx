@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { BiArrowBack } from "react-icons/bi";
 import loadingImg from "../assets/loading.svg";
 
 export default function BlogDetails() {
