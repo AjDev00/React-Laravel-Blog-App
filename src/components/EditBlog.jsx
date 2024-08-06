@@ -212,7 +212,7 @@ export default function EditBlog() {
                     <img
                       src={`http://localhost:8000/uploads/blogs/${blog.image}`}
                       alt=""
-                      className="h-auto rounded-lg"
+                      className="h-auto rounded-lg md:w-auto md:h-96"
                     />
                   )}
                 </div>
