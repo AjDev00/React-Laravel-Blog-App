@@ -33,52 +33,56 @@ export default function Blog({ firstBlog, loading, showImage }) {
   return (
     <div>
       <div className="dark:text-white">
-        {!input && (
-          <div>
-            <div
-              style={{ fontSize: "18px" }}
-              className="flex flex-col px-3 pt-7 gap-3 font-semibold"
-            >
-              {loading ? (
-                <div className="justify-center items-center flex">
-                  <img
-                    src={loadingImg}
-                    alt=""
-                    className="w-14 h-14 animate-spin mt-44"
-                  />
-                </div>
-              ) : (
-                <div className="flex flex-col gap-3">
-                  <img
-                    src={showImage(firstBlog.image)}
-                    alt=""
-                    className="rounded-md h-52 w-96"
-                  />
-                  <div className="font-bold text-[18px]">{firstBlog.title}</div>
-                  <div className="dark:opacity-100 opacity-90">
-                    {firstBlog.shortDesc}
+        <div className="md:hidden">
+          {!input && (
+            <div>
+              <div
+                style={{ fontSize: "18px" }}
+                className="flex flex-col px-3 pt-7 gap-3 font-semibold"
+              >
+                {loading ? (
+                  <div className="justify-center items-center flex">
+                    <img
+                      src={loadingImg}
+                      alt=""
+                      className="w-14 h-14 animate-spin mt-44"
+                    />
                   </div>
-                </div>
+                ) : (
+                  <div className="flex flex-col gap-3">
+                    <img
+                      src={showImage(firstBlog.image)}
+                      alt=""
+                      className="rounded-md h-52 w-96"
+                    />
+                    <div className="font-bold text-[18px]">
+                      {firstBlog.title}
+                    </div>
+                    <div className="dark:opacity-100 opacity-90">
+                      {firstBlog.shortDesc}
+                    </div>
+                  </div>
+                )}
+              </div>
+              {!loading && (
+                <span className="flex flex-row justify-between mt-2 px-4">
+                  <Link to={`/blog-details/${firstBlog.id}`}>
+                    <span className="flex flex-row items-center gap-2 mt-4">
+                      <i className="hover:underline text-[15px]">Read More</i>
+                      <BiArrowFromLeft size={17} className="mt-0.5" />
+                    </span>
+                  </Link>
+                </span>
               )}
             </div>
-            {!loading && (
-              <span className="flex flex-row justify-between mt-2 px-4">
-                <Link to={`/blog-details/${firstBlog.id}`}>
-                  <span className="flex flex-row items-center gap-2 mt-4">
-                    <i className="hover:underline text-[15px]">Read More</i>
-                    <BiArrowFromLeft size={17} className="mt-0.5" />
-                  </span>
-                </Link>
-              </span>
-            )}
-          </div>
-        )}
+          )}
+        </div>
         <div>
-          <div className="-z-10">
+          <div className="md:px-20">
             {!loading && !input ? (
               <div
                 style={{ fontSize: "22px" }}
-                className="font-bold opacity-50 text-blue-900 mb-4 -z-50 px-3 pt-14 dark:text-white dark:opacity-100"
+                className="font-bold opacity-50 text-blue-900 mb-4 px-3 pt-14 dark:text-white dark:opacity-100"
               >
                 Recent Posts
               </div>
@@ -87,25 +91,29 @@ export default function Blog({ firstBlog, loading, showImage }) {
                 <div>
                   <div
                     style={{ fontSize: "22px" }}
-                    className="font-bold opacity-50 text-blue-900 mb-4 -z-50 px-3 pt-5"
+                    className="font-bold opacity-50 text-blue-900 mb-4 px-3 pt-5 dark:text-white dark:opacity-100"
                   >
                     Search Results
                   </div>
                 </div>
               )
             )}
-            {blogs &&
-              blogs.map((blog) => {
-                return (
-                  <RecentPosts
-                    blogs={blogs}
-                    setBlogs={setBlogs}
-                    blog={blog}
-                    key={blog.id}
-                    loading={loading}
-                  />
-                );
-              })}
+            <div className="md:flex md:flex-wrap">
+              {blogs &&
+                blogs.map((blog) => {
+                  return (
+                    <div className="md:flex-none md:w-1/3">
+                      <RecentPosts
+                        blogs={blogs}
+                        setBlogs={setBlogs}
+                        blog={blog}
+                        key={blog.id}
+                        loading={loading}
+                      />
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
       </div>

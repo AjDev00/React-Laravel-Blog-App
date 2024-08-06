@@ -67,14 +67,14 @@ export default function CreateBlogs() {
 
   return (
     <div>
-      <div className="pt-4">
+      <div className="pt-4 md:px-44">
         <div className="flex flex-row-reverse justify-between items-center">
           {/* //back button. */}
           <div className="px-3 mb-5">
             <button
               style={{ fontSize: "16px" }}
               onClick={() => history.go(-1)}
-              className="border border-transparent shadow-md p-2 px-4 rounded-md bg-slate-500 text-black font-semibold cursor-pointer hover:invert duration-300"
+              className="border border-transparent shadow-md p-2 px-4 rounded-md bg-slate-500 text-black dark:text-white font-semibold cursor-pointer hover:invert duration-300"
             >
               {/* <BiArrowBack /> */}
               back
@@ -82,7 +82,7 @@ export default function CreateBlogs() {
           </div>
 
           {/* //header. */}
-          <div className="px-3 mb-5 text-2xl text-blue-900 font-semibold">
+          <div className="px-3 mb-5 text-2xl text-blue-900 font-semibold dark:text-white">
             Create Blog
           </div>
         </div>

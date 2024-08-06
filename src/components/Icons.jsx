@@ -9,7 +9,7 @@ export default function Icons() {
     useContext(AppContext);
 
   return (
-    <div className="dark:text-white flex flex-row gap-4 text-blue-900 justify-center items-center">
+    <div className="dark:text-white flex flex-row gap-4 text-blue-900 justify-center items-center md:mt-2">
       <div className="opacity-50 cursor-pointer">
         <FaSearch size={25} onClick={handleShowInput} />
       </div>

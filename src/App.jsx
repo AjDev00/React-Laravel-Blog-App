@@ -70,7 +70,7 @@ function App() {
             <Route exact path="/">
               <Header />
               <NavBar />
-              {showInput && <InputSearch />}
+              <div className="md:hidden">{showInput && <InputSearch />}</div>
               <Blogs />
               <AddNewBlogBtn />
             </Route>

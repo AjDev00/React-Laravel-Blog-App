@@ -44,25 +44,27 @@ export default function RecentPosts({ blogs, setBlogs, blog, loading }) {
 
   return (
     <div>
-      {!loading && (
-        <div className="px-3">
-          <div className="flex flex-col gap-7 -z-10">
-            <div className="px-3 flex flex-col gap-3">
+      <div className="">
+        {!loading && (
+          <div className="px-3 flex flex-col gap-7 md:px-0">
+            <div className="px-3 flex flex-col gap-3 md:gap-6 md:mb-24">
               <img
                 src={showAllImage(blog.image)}
                 alt=""
-                className="rounded-lg h-auto"
+                className="rounded-lg h-auto md:h-60 md:w-96 md:text-wrap md:rounded-md"
               />
               <div className="font-bold text-[18px]">{blog.title}</div>
               <p
                 style={{ fontSize: "" }}
                 className="text-black opacity-90 dark:text-white font-semibold flex flex-col"
               >
-                {blog.shortDesc}
-                <span className="flex flex-row justify-between mt-2">
+                <span className="md:text-wrap">{blog.shortDesc}</span>
+                <span className="flex flex-row justify-between md:gap-44 mt-2">
                   <Link to={`/blog-details/${blog.id}`}>
                     <span className="flex flex-row items-center gap-1.5 mt-4">
-                      <i className="hover:underline text-[15px]">Read More</i>
+                      <i className="hover:underline text-[15px] md:text-nowrap">
+                        Read More
+                      </i>
                       <BiArrowFromLeft size={17} className="mt-0.5" />
                     </span>
                   </Link>
@@ -72,7 +74,6 @@ export default function RecentPosts({ blogs, setBlogs, blog, loading }) {
                     </Link>
                     <BiTrash
                       onClick={() => setOpen(true)}
-                      // onClick={() => deletePosts(blog.id)}
                       size={20}
                       className="cursor-pointer text-red-500 mt-4"
                     />
@@ -80,10 +81,10 @@ export default function RecentPosts({ blogs, setBlogs, blog, loading }) {
                 </span>
               </p>
             </div>
-            <hr className="mb-10 dark:opacity-20" />
+            <hr className="mb-10 dark:opacity-20 md:hidden" />
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* //Tailwind custom Modal. */}
       <div>

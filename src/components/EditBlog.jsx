@@ -104,7 +104,7 @@ export default function EditBlog() {
           />
         </div>
       ) : (
-        <div className="pt-4">
+        <div className="pt-4 md:px-44">
           <div className="flex flex-row-reverse justify-between items-center">
             {/* //back button. */}
             <div className="px-3 mb-5">

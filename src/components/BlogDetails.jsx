@@ -32,7 +32,7 @@ export default function BlogDetails() {
           />
         </div>
       ) : (
-        <div className="flex flex-col mb-5">
+        <div className="flex flex-col mb-5 md:px-44">
           <div className="flex flex-row justify-between px-3 pt-3 items-center">
             <div className="font-bold text-[22px] text-blue-800 dark:text-white">
               {singleBlog.title}
@@ -60,7 +60,7 @@ export default function BlogDetails() {
               <img
                 src={`http://localhost:8000/uploads/blogs/${singleBlog.image}`}
                 alt=""
-                className="h-auto rounded-lg"
+                className="h-auto rounded-lg md:w-auto md:h-96"
               />
             )}
           </div>
